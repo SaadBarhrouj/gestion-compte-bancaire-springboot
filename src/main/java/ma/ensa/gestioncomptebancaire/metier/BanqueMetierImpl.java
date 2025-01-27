@@ -26,9 +26,8 @@ public class BanqueMetierImpl implements IBanqueMetier {
 
     @Override
     public Compte consulterCompte(String codeCpte) {
-        Compte cp = compteRepository.findById(codeCpte).get();
-        if(cp==null) throw new RuntimeException("Compte Introuvable");
-        return cp;
+        return compteRepository.findById(codeCpte)
+                .orElseThrow(() -> new RuntimeException("Compte Introuvable"));
     }
 
     @Override
@@ -62,7 +61,9 @@ public class BanqueMetierImpl implements IBanqueMetier {
 
     @Override
     public Page<Operation> listOperation(String codeCpte, int page, int pageSize) {
+
         return operationRepository.listOperation(codeCpte, PageRequest.of(page, pageSize));
+
     }
 
 }

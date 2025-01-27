@@ -25,4 +25,7 @@ public class Client implements Serializable {
         this.nom = nom;
         this.email = email;
     }
+    public String getNom() {
+        return nom;
+    }
 }

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="template1">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+    <title>Banque</title>
+    <style>
+        .navbar {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .card-header {
+            font-weight: bold;
+        }
+        footer {
+            background-color: #343a40;
+            color: #ffffff;
+        }
+        footer a {
+            color: #0d6efd;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="#">Ma Banque</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/operations}">Opérations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/comptes}">Comptes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/clients}">Clients</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="container my-4">
+    <div layout:fragment="content" class="row g-4">
+        <!-- Colonne gauche -->
+        <div class="col-md-6">
+            <div class="card border-primary mb-3">
+                <div class="card-header bg-primary text-white">Consultation d'un Compte</div>
+                <div class="card-body">
+                    <form th:action="@{/consulterCompte}" method="get">
+                        <label for="codeCompte" class="form-label">Code Compte :</label>
+                        <input type="text" id="codeCompte" name="codeCompte" th:value="${codeCompte}" class="form-control" required>
+                        <button type="submit" class="btn btn-primary mt-3">OK</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Affichage des exceptions -->
+            <div class="alert alert-danger" th:if="${exception}" role="alert">
+                <strong>Erreur :</strong> <span th:text="${exception}"></span>
+            </div>
+
+            <div class="card border-primary mb-3" th:if="${compte}">
+                <div class="card-header bg-primary text-white">Informations sur le Compte</div>
+                <div class="card-body">
+                    <p><strong>Client:</strong> <span th:text="${compte.client.nom}"></span></p>
+                    <p><strong>Code :</strong> <span th:text="${compte.codeCompte}"></span></p>
+                    <p><strong>Solde :</strong> <span th:text="${compte.solde}"></span></p>
+                    <p><strong>Date de Création :</strong> <span th:text="${#dates.format(compte.dateCreation, 'dd/MM/yyyy')}"></span></p>
+                    <p><strong>Type :</strong> <span th:text="${typeCompte}"></span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Colonne droite -->
+        <div class="col-md-6" th:if="${compte}">
+            <div class="card border-primary mb-3">
+                <div class="card-header bg-primary text-white">Liste des opérations</div>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Numero</th>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Montant</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="operation : ${listOperation}">
+                            <td th:text="${operation.numero}"></td>
+                            <td th:text="${#dates.format(operation.dateOperation, 'dd/MM/yyyy')}"></td>
+                            <td th:text="${operation.typeOperation}"></td>
+                            <td th:text="${operation.montant}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+            <!-- Pagination -->
+            <nav aria-label="Pagination" class="mt-3">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+                        <a class="page-link" th:href="@{/consulterCompte(codeCompte=${codeCompte},page=${currentPage - 1})}">Précédent</a>
+                    </li>
+                    <li class="page-item" th:each="page,status : ${pages}"
+                        th:classappend="${status.index == currentPage} ? 'active'">
+                        <a class="page-link" th:href="@{/consulterCompte(codeCompte=${codeCompte}, page=${status.index})}" th:text="${status.index}"></a>
+                    </li>
+                    <li class="page-item" th:classappend="${currentPage == totalPages} ? 'disabled'">
+                        <a class="page-link" th:href="@{/consulterCompte(codeCompte=${codeCompte},page=${currentPage + 1})}">Suivant</a>
+                    </li>
+
+                </ul>
+            </nav>
+            <div class="card border-primary mb-3">
+                <div class="card-header bg-primary text-white">Liste des opérations</div>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Numero</th>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Montant</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="operation : ${listOperation}">
+                            <td th:text="${operation.numero}"></td>
+                            <td th:text="${#dates.format(operation.dateOperation, 'dd/MM/yyyy')}"></td>
+                            <td th:text="${operation.typeOperation}"></td>
+                            <td th:text="${operation.montant}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    </div>
+</main>
+
+<footer class="bg-dark text-light text-center text-lg-start">
+    <div class="container p-4">
+        <div class="row">
+            <div class="col-lg-6">
+                <h5>À propos de nous</h5>
+                <p>
+                    Nous offrons des services financiers sécurisés pour gérer vos finances efficacement.
+                </p>
+            </div>
+            <div class="col-lg-6">
+                <h5>Contactez-nous</h5>
+                <p>
+                    Appelez-nous au <strong>0800-123-456</strong> ou <a href="#">écrivez-nous</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+        © 2024 Ma Banque. Tous droits réservés.
+    </div>
+</footer>
+
+<script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.Page;
+
 import java.util.Date;
 
 @SpringBootApplication
@@ -66,6 +68,8 @@ public class GestionCompteBancaireApplication implements CommandLineRunner {
         operationRepository.save(new Retrait(new Date(), 1000, cpte2));
         System.out.println("Opérations pour Compte 2 enregistrées");
         banqueMetierImpl.verser("c1",100.00);
+        Page<Operation> pageOperation = ibanqueMetier.listOperation("c1", 0, 5);
+        System.out.println(pageOperation.getContent());
 
     }
 }

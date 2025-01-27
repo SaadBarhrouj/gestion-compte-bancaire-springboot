@@ -5,7 +5,7 @@ import lombok.*;
 
 import java.util.Date;
 
-@NoArgsConstructor @AllArgsConstructor @Getter
+ @AllArgsConstructor @Getter
 @Setter @ToString
 @Entity
 @DiscriminatorValue("CE")
@@ -20,4 +20,7 @@ public class CompteEpargne extends Compte {
         super();
     }
 
-}
+     public double getTaux() {
+         return taux;
+     }
+ }

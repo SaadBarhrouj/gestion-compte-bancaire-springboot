@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
-@NoArgsConstructor @AllArgsConstructor @Getter
+ @AllArgsConstructor @Getter
 @Setter
 @ToString
 @Entity
@@ -52,6 +52,9 @@ public abstract class Compte implements Serializable {
     }
     public void setSolde(double solde) {
         this.solde = solde;
+    }
+    public Client getClient() {
+        return client;
     }
 
 
