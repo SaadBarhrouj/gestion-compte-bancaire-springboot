@@ -1,0 +1,22 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accès Interdit</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+</head>
+<body class="bg-light">
+
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="text-center">
+        <h1 class="display-4 text-danger">Erreur 403 - Accès Interdit</h1>
+        <p class="lead">Vous n'avez pas la permission d'accéder à cette ressource.</p>
+        <a th:href="@{/operations}" class="btn btn-primary btn-lg">Retour à l'accueil</a>
+    </div>
+</div>
+
+</body>
+</html>

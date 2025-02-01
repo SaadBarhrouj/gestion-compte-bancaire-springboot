@@ -9,15 +9,20 @@ import lombok.Setter;
 
 import java.util.Date;
 
-@NoArgsConstructor @AllArgsConstructor @Getter
-@Setter
+// Annotation pour indiquer que cette classe est une entité JPA
+ @Getter @Setter
 @Entity
+// Annotation pour spécifier la valeur du discriminant dans la table héritée (indique que c'est un Versement)
 @DiscriminatorValue("V")
 public class Versement extends Operation {
-    public Versement(Date dateOperation, double montant, Compte compte ) {
-        super(dateOperation, montant, compte);
+
+    // Constructeur pour créer un versement avec une date, un montant et un compte
+    public Versement(Date dateOperation, double montant, Compte compte) {
+        super(dateOperation, montant, compte); // Appel du constructeur de la classe parente 'Operation'
     }
+
+    // Constructeur par défaut
     public Versement(){
-        super();
+        super(); // Appel du constructeur par défaut de la classe parente 'Operation'
     }
 }

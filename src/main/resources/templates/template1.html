@@ -1,27 +1,25 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
-    <title>Ma Banque</title>
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{/css/style.css}">
-    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+    <title>Banque</title>
 </head>
 <body>
-
 <header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Banque</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="#">Ma Banque</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/operations}">Operations</a>
+                        <a class="nav-link" th:href="@{/operations}">Opérations</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/comptes}">Comptes</a>
@@ -30,44 +28,55 @@
                         <a class="nav-link" th:href="@{/clients}">Clients</a>
                     </li>
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                <div class="navbar-nav ms-auto"> <!-- Aligner à droite -->
+                    <!-- Dropdown Authentification -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle"></i>
+                            <!-- Affichage dynamique du nom de l'utilisateur -->
+                            <span th:text="${#authentication.principal.username}">Username</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li>
+                                <form th:action="@{/logout}" method="post">
+                                    <button type="submit" class="dropdown-item text-danger">
+                                        <i class="bi bi-box-arrow-right"></i> Déconnexion
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                </div>
             </div>
         </div>
     </nav>
 </header>
 
-<main>
-    <!-- Fragment pour injecter le contenu spécifique -->
-    <section layout:fragment="content">
-        <p>Contenu par défaut (à remplacer).</p>
-    </section>
+<main class="container my-4">
+    <div layout:fragment="content1" class="row g-4">
+        <!-- Ton contenu ici -->
+    </div>
 </main>
 
-<footer class="bg-body-tertiary text-center text-lg-start bg-dark text-light" style="border-top: 10px solid #007bff;">
+<footer>
     <div class="container p-4">
         <div class="row">
-            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                <h5 class="text-primary">About Us</h5>
-                <p>
-                    ElectroStore is your trusted source for the latest and greatest in electronics. From smartphones to laptops, we have it all.
-                </p>
+            <div class="col-lg-6">
+                <h5>À propos de nous</h5>
+                <p>Nous offrons des services financiers sécurisés pour gérer vos finances efficacement.</p>
             </div>
-            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                <h5 class="text-primary">Customer Service</h5>
-                <p>
-                    Our customer service team is available 24/7 to assist you with any queries or concerns. Your satisfaction is our priority.
-                </p>
+            <div class="col-lg-6">
+                <h5>Contactez-nous</h5>
+                <p>Appelez-nous au <strong>0800-123-456</strong> ou <a href="#">écrivez-nous</a>.</p>
             </div>
         </div>
     </div>
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
-        © 2024 Copyright:
-        <a class="text-primary" href="https://electrostore.com/">electrostore.com</a>
+    <div class="text-center p-3">
+        © 2024 Ma Banque. Tous droits réservés.
     </div>
 </footer>
 
+<script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>
