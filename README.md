@@ -95,11 +95,16 @@ Un diagramme de classes UML a été utilisé pour concevoir l'architecture de l'
 </div>
 
 ---
+## Contact
 
-## Auteur ✨
-👤 **Saad Barhrouj**  
-📧 Contact : [email@example.com](mailto:email@example.com)  
-🔗 GitHub : [github.com/SaadBarhrouj](https://github.com/SaadBarhrouj)  
+Pour toute question ou assistance, contactez-nous :  
+
+- **Email:** [Saad Barhrouj](saad.barhrouj@etu.uae.ac.ma) 📧
+- **LinkedIn:** [Saad Barhrouj](https://www.linkedin.com/in/saad-barhrouj-b37270295/) 💼
+- **GitHub:** [SaadBarhrouj](https://github.com/SaadBarhrouj) 🐙
+- **Portfolio :** [Live Portfolio](https://portfolio-saad-barhrouj.netlify.app/) 
+
+
 
 ---
 
