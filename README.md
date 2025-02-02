@@ -1,8 +1,8 @@
-   
 # Gestion Compte Bancaire 🏦
 
 ## Description 📖
-Ce projet est une application web de gestion de comptes bancaires, développée en **Spring Boot** avec une architecture **JEE**. Il permet aux utilisateurs de :
+Ce projet est une application web de gestion de comptes bancaires, développée en **Spring Boot** avec une architecture **JEE** basée sur **Spring MVC**.  
+Il permet aux utilisateurs de :
 - **Admin** : Effectuer des opérations bancaires (dépôt, retrait, virement) et consulter les comptes.
 - **Utilisateur** : Consulter son compte et l'historique des opérations.
 
@@ -12,8 +12,8 @@ L'application intègre **Spring Security** pour l'authentification et la gestion
 
 ## Technologies Utilisées 🛠️
 
-- **Backend** : Spring Boot, Spring Data JPA (Hibernate), Spring Security, Maven
-- **Frontend** : Thymeleaf, Bootstrap, Layout
+- **Backend** : Spring Boot, Spring MVC, Spring Data JPA (Hibernate), Spring Security, Maven
+- **Frontend** : Thymeleaf, Bootstrap
 - **Base de données** : MySQL
 - **Serveur d'application** : Tomcat
 - **Conception** : UML (diagramme de classes)
@@ -77,7 +77,8 @@ Déployer le fichier `gestion-compte-bancaire.war` dans `webapps/` de Tomcat.
 
 ## Conception UML 📝
 Un diagramme de classes UML a été utilisé pour concevoir l'architecture de l'application.
-📂    <div style="text-align: center;">
+
+<div style="text-align: center;">
     <img src="preview/1.preview.png" alt="Preview" width="800" style="border: 2px solid #000; display: inline-block;">    
 </div>
 
@@ -85,13 +86,12 @@ Un diagramme de classes UML a été utilisé pour concevoir l'architecture de l'
 
 ## Capture d'écran 🖼️
 
-   <div style="text-align: center;">
+<div style="text-align: center;">
     <img src="preview/1.preview.png" alt="Preview" width="800" style="border: 2px solid #000; display: inline-block;"> 
-        <img src="preview/2.preview.png" alt="Preview" width="400" style="border: 2px solid #000; display: inline-block;"> 
+    <img src="preview/2.preview.png" alt="Preview" width="400" style="border: 2px solid #000; display: inline-block;"> 
     <img src="preview/3.preview.png" alt="Preview" width="400" style="border: 2px solid #000; display: inline-block;"> 
     <img src="preview/4.preview.png" alt="Preview" width="400" style="border: 2px solid #000; display: inline-block;"> 
     <img src="preview/5.preview.png" alt="Preview" width="400" style="border: 2px solid #000; display: inline-block;"> 
-
 </div>
 
 ---
