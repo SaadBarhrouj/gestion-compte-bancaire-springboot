@@ -79,7 +79,7 @@ Déployer le fichier `gestion-compte-bancaire.war` dans `webapps/` de Tomcat.
 Un diagramme de classes UML a été utilisé pour concevoir l'architecture de l'application.
 
 <div style="text-align: center;">
-    <img src="preview/1.preview.png" alt="Preview" width="800" style="border: 2px solid #000; display: inline-block;">    
+    <img src="preview/6.preview.png" alt="Preview" width="800" style="border: 2px solid #000; display: inline-block;">    
 </div>
 
 ---
